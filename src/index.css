@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url(https://www.freshbooks.com/hub/accounting/expense-tracking);
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+
+input {
+  outline: none;
+  /* border-left: transparent;
+  border-right: transparent;
+  border-top: transparent;
+  border-bottom-right-radius: 2em;
+  border-bottom-left-radius: 2em; */
+}
+
