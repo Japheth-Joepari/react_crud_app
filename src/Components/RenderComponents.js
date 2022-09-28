@@ -2,12 +2,15 @@ import AddItem from "./AddItem/AddItem";
 import { todo } from "./todos";
 import { useState } from "react";
 import TodoItems from "./TodoItems/TodoItems";
+import ErrorModal from "./UI/ErrorModal";
 
 export default function RenderComponents() {
   const [todos, setTodos] = useState(todo);
   const [userInput, setUserInput] = useState("");
   const [todoId, setId] = useState("");
   const [editing, isEditing] = useState(false);
+  const [error, setError] = useState();
+  const [id, sId] = useState();
 
   const newItem = (event) => {
     setUserInput(event);
@@ -28,10 +31,11 @@ export default function RenderComponents() {
 
   //Deleting item
   const handleDeletedItem = (todoId) => {
-    const todoFilter = todos.filter((todo) => {
-      return todo.id !== todoId;
+    sId(todoId);
+    setError({
+      title: "Delete ?",
+      message: "Are you sure that you want to delete item",
     });
-    setTodos(todoFilter);
   };
 
   //handleCOmpleted items
@@ -66,24 +70,46 @@ export default function RenderComponents() {
     setUserInput(description);
   };
 
-  return (
-    <div className="wrapper">
-      <h1 className="txt">Task Manager</h1>
-      <AddItem
-        handleUpdateData={handleUpdateData}
-        editing={editing}
-        newItem={newItem}
-        userInput={userInput}
-        handleData={handleData}
-      />
+  const handleDItem = () => {
+    const todoFilter = todos.filter((todo) => {
+      return todo.id !== id;
+    });
+    setTodos(todoFilter);
+    setError(false);
+  };
 
-      <TodoItems
-        editing={editing}
-        todos={todos}
-        handleEditedItem={handleEditedItem}
-        handleDeletedItem={handleDeletedItem}
-        handleCompleteItem={handleCompletedItem}
-      />
+  const handleBackDropItem = () => {
+    setError(false);
+  };
+
+  return (
+    <div>
+      {error && (
+        <ErrorModal
+          handleDItem={handleDItem}
+          title={error.title}
+          message={error.message}
+          handleBackDropItem={handleBackDropItem}
+        />
+      )}
+      <div className="wrapper">
+        <h1 className="txt">Task Manager</h1>
+        <AddItem
+          handleUpdateData={handleUpdateData}
+          editing={editing}
+          newItem={newItem}
+          userInput={userInput}
+          handleData={handleData}
+        />
+
+        <TodoItems
+          editing={editing}
+          todos={todos}
+          handleEditedItem={handleEditedItem}
+          handleDeletedItem={handleDeletedItem}
+          handleCompleteItem={handleCompletedItem}
+        />
+      </div>
     </div>
   );
 }

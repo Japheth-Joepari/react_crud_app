@@ -1,0 +1,21 @@
+.button {
+    font: inherit;
+    border: none;
+    background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+    color: white;
+        padding: 0.25rem 1rem;
+    cursor: pointer;
+  }
+  
+  .button:hover,
+  .button:active {
+    background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+    background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+    color: white;
+    border: none;
+  }
+  
+  .button:focus {
+    outline: none;
+    border: none
+  }
