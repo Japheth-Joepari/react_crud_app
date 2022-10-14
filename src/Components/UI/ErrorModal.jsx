@@ -1,4 +1,3 @@
-import react from "react";
 import classes from "./ErrorModal.module.css";
 import Button from "./Button.jsx";
 import Card from "./Card";
@@ -8,6 +7,9 @@ const ErrorModal = ({ title, message, handleDItem, handleBackDropItem }) => {
     handleDItem(e);
   };
 
+  const handleCancel = () => {
+    handleBackDropItem();
+  };
   const handleBackDrop = () => {
     handleBackDropItem();
   };
@@ -22,7 +24,10 @@ const ErrorModal = ({ title, message, handleDItem, handleBackDropItem }) => {
           <p className={classes.content}>{message}</p>
         </div>
         <footer className={classes.actions}>
-          <Button onClick={handleClick}>Okay</Button>
+          <Button onClick={handleClick}>Yes Delete</Button>
+          <button onClick={handleCancel} className={classes.buttonDanger}>
+            No I don't
+          </button>
         </footer>
       </Card>
     </div>
