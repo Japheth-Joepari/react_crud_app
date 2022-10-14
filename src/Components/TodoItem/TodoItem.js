@@ -14,7 +14,7 @@ const TodoItem = ({
   };
 
   const handleDelete = (id) => {
-    hanDeleted(id);
+    hanDeleted(id, description);
   };
 
   const handleEditedItem = (id, description) => {

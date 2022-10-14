@@ -1,22 +1,22 @@
 import TodoItem from "../TodoItem/TodoItem";
 import Filter from "../Filter/Filter";
-import { useState } from "react";
 
 function TodoItems({
   todos,
+  filtered,
   handleCompletedTodos,
   handleDeletedItem,
   handleCompleteItem,
   handleEditedItem,
+  handleDeletedAllItem,
+  handleFilterChange,
 }) {
-  const [filtered, setFiltered] = useState(todos);
-
   const handleCompleted = (completed) => {
     handleCompletedTodos(completed);
   };
 
-  const hanDelete = (todoItem) => {
-    handleDeletedItem(todoItem);
+  const hanDelete = (id, description) => {
+    handleDeletedItem(id, description);
   };
 
   const hanCompleted = (complete) => {
@@ -28,7 +28,7 @@ function TodoItems({
   };
 
   const onChangeFilter = (values) => {
-    setFiltered(values);
+    handleFilterChange(values);
   };
 
   let filteredItem = todos.filter((todo) => {
@@ -39,7 +39,7 @@ function TodoItems({
   });
 
   const handleDeleteAll = () => {
-    setFiltered(todos.splice(0, todos.length));
+    handleDeletedAllItem();
   };
 
   return (
@@ -49,6 +49,7 @@ function TodoItems({
         onChangeFilter={onChangeFilter}
         handleDeleteItems={handleDeleteAll}
       />
+
       {filteredItem.length > 0 ? (
         filteredItem.map((todo, i) => {
           return (
